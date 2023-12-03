@@ -1,11 +1,16 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace DijkstraAlgorithm
 {
-    internal class Program
+    public class Dijkstra
     {
-        static void Main(string[] args)
+        WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
+        public Dijkstra()
         {
-            WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
             WeightedGraphNode<int> n1 = graph.AddNode(1);
             WeightedGraphNode<int> n2 = graph.AddNode(2);
             WeightedGraphNode<int> n3 = graph.AddNode(3);
@@ -46,16 +51,14 @@ namespace DijkstraAlgorithm
 
             graph.AddEdge(n7, n8, 21);
             graph.AddEdge(n8, n7, 21);
+        }
 
-            Console.WriteLine("================================================\n");
-            Console.WriteLine("Generic Weighted Directed Graph\n");
-            Console.WriteLine("Adjacency List Implementation\n");
-            Console.WriteLine("================================================\n");
-            Console.WriteLine(WeightedGraph<int>.PrintGraph(graph));
-            Console.WriteLine("\n================================================\n");
-            Console.WriteLine($"Dijkstra's Algorithm Shortest Path Node {n1} to {n8}");
-            Console.WriteLine("================================================\n");
-            //Dijkstra.ShortestPath(graph, n7, n3).ForEach(e => Console.WriteLine(e.ToString() + "\n")); 
+        public List<WeightedEdge<int>> ShortestPath(int from, int to)
+        {
+            WeightedGraphNode<int> n1 = graph.Nodes[from - 1];
+            WeightedGraphNode<int> n2 = graph.Nodes[to -1];
+            List<WeightedEdge<int>> path = graph.GetShortestPathDijkstra(n1, n2);
+            return path;
         }
     }
 }
