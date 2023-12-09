@@ -60,5 +60,13 @@ namespace DijkstraAlgorithm
             List<WeightedEdge<int>> path = graph.GetShortestPathDijkstra(n1, n2);
             return path;
         }
+        public void ModifyEdgeWeight(int edge, int newWeight)
+        {
+            graph.GetEdges()[edge].Weight = newWeight;
+        }
+        public void ResetEdgeWeights()
+        {
+
+        }
     }
 }
